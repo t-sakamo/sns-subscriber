@@ -1,0 +1,19 @@
+<% content_for :cover do %>
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-contents">
+        <h1>一覧</h1>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<p><%= @sns_messages.length %>件ヒットしました。</p>
+
+<div class="sns_message_list">
+  <% @sns_messages.each do |sns_message| %>
+    <article class="sns_message">
+      <p class="sns_message_body"><%= sns_message.body %></p>
+    </article>
+  <% end %>
+</div>

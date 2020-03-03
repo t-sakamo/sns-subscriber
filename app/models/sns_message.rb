@@ -1,0 +1,2 @@
+class SnsMessage < ApplicationRecord
+end
