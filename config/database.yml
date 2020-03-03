@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: postgresql
+  username: postgres
+  password:
+  pool: 5
+
+development:
+  <<: *default
+  database: snsapp_development
+
+test:
+  <<: *default
+  database: snsapp_test
+
+production:
+  <<: *default
+  database: snsapp_production
+  username: <%= ENV['SNSAPP_DATABASE_USERNAME'] %>
+  password: <%= ENV['SNSAPP_DATABASE_PASSWORD'] %>
