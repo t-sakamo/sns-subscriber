@@ -8,6 +8,6 @@ class SnsMessagesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
 
   def create
-    logger.info(request.headers.to_s)
+    request.headers.env.each {|k, v| logger.debug("#{k} : #{v}")}
   end
 end
