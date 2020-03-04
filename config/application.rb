@@ -33,6 +33,12 @@ module App
     config.generators do |g|
       g.helper false
       g.assets false
+      g.test_framework :rspec,
+        fixtures: true,
+        controller_specs: true,
+        helper_specs: false,
+        routing_specs: false
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
   end
 end
