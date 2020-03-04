@@ -1,6 +1,6 @@
 class SnsMessagesController < ApplicationController
   def index
-    logger.debug "entering."
+    logger.info("=== entering ===")
     @sns_messages = SnsMessage.all
   end
 end
