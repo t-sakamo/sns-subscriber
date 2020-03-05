@@ -47,5 +47,6 @@ class SnsMessagesController < ApplicationController
   end
 
   def do_confirm_subscription
+    Faraday.get(body_params["SubscribeURL"])
   end
 end

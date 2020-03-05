@@ -8,6 +8,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'aws-sdk', '~> 2'
+gem 'faraday', '0.9.2'
 gem 'config'
 
 group :test do
