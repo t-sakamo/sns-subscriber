@@ -14,9 +14,12 @@ class SnsMessagesController < ApplicationController
     logger.debug("=== header ===")
     request.headers.env.each {|k, v| logger.debug("#{k} : #{v}")}
 
+    authentic? ? logger.debug("authentic? is true") : logger.debug("authentic? is false")
     case body_params["Type"]
     when "SubscriptionConfirmation"
       confirm_subscription
+    when "Notification"
+      recieve_message
     end
   end
 
@@ -30,23 +33,19 @@ class SnsMessagesController < ApplicationController
     @body_params ||= JSON.parse(request_body)
   end
 
-  def confirm_subscription
-    return false unless check_confirm_subscription
-    do_confirm_subscription
-  end
-
-  def check_confirm_subscription
+  def authentic?
     # TopicArnと突合
     # 省略
 
     # Signatureをチェックする
-    ret = Aws::SNS::MessageVerifier.new.authentic?(request_body)
-    logger.debug("verifier.authentic? is true") if ret
-    logger.debug("verifier.authentic? is false") unless ret
-    ret
+    Aws::SNS::MessageVerifier.new.authentic?(request_body)
   end
 
-  def do_confirm_subscription
+  def confirm_subscription
     Faraday.get(body_params["SubscribeURL"])
+  end
+
+  def recieve_message
+    SnsMessage.create(body: body_params["Message"])
   end
 end
