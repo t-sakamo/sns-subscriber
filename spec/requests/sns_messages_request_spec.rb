@@ -51,16 +51,17 @@ RSpec.describe 'SnsMessages', type: :request do
 
       let(:request_body) do
         {
-          "Type": "Notification",
-          "MessageId": "a28aa186-58f8-5bdb-b1e8-f75c984940e5",
-          "TopicArn": "arn:aws:sns:ap-northeast-1:934352308465:topic",
-          "Subject": "this is test",
-          "Message": "this is test message\n{\n  hoge: \"moge\"\n}",
-          "Timestamp": "2020-03-05T08:55:13.482Z",
-          "SignatureVersion": "1",
-          "Signature": "o5qOvMyr+L6satX88jC3TAmOlRPSO8KcJb2zLKz+uUR/8YJdHr6qBAfOSbw1UcTDukE4HQJDe7yomQZqYTQW4OMUXnudUk+c45YqNQrCNGwQ6KQYC7Ord2ANSciGj62mxX3tRZgOqmwvkLGryNrPdPAYXBIIeLFSnz8uKE4wQTuLcQIMchrUmM6t4KPUmMPbakSZvGgz7adtegYy0+ziiqLEmWHhmH0MIgVtgH4p7IGrF2S1dtkWtagnHuW/qwztVYQnwCAvoiebOohKj8LLSIY46wqjR4qNC1Q5VPvcfSSImGP94q6+wgamDdvhNLp2h404gtFaNWDM86uEkwfTVQ==",
-          "SigningCertURL": "https://sns.ap-northeast-1.amazonaws.com/SimpleNotificationService-a86cb10b4e1f29c941702d737128f7b6.pem",
-          "UnsubscribeURL": "https://sns.ap-northeast-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:ap-northeast-1:934352308465:topic:7b0449a3-5174-47d6-97b7-db51a2ffe51e"
+          Type: "Notification",
+          MessageId: "a28aa186-58f8-5bdb-b1e8-f75c984940e5",
+          TopicArn: "arn:aws:sns:ap-northeast-1:934352308465:topic",
+          Subject: "this is test",
+          Message: "this is test message\n{\n  hoge: \"moge\"\n}",
+          MessageAttributes: {"aaa"=>{"Type"=>"Binary", "Value"=>"AgME"}, "ccc"=>{"Type"=>"String", "Value"=>"test"}, "ary"=>{"Type"=>"String.Array", "Value"=>"[\"hoge\", \"moge\"]"}, "zzz"=>{"Type"=>"Number", "Value"=>"0230.01"}},
+          Timestamp: "2020-03-05T08:55:13.482Z",
+          SignatureVersion: "1",
+          Signature: "o5qOvMyr+L6satX88jC3TAmOlRPSO8KcJb2zLKz+uUR/8YJdHr6qBAfOSbw1UcTDukE4HQJDe7yomQZqYTQW4OMUXnudUk+c45YqNQrCNGwQ6KQYC7Ord2ANSciGj62mxX3tRZgOqmwvkLGryNrPdPAYXBIIeLFSnz8uKE4wQTuLcQIMchrUmM6t4KPUmMPbakSZvGgz7adtegYy0+ziiqLEmWHhmH0MIgVtgH4p7IGrF2S1dtkWtagnHuW/qwztVYQnwCAvoiebOohKj8LLSIY46wqjR4qNC1Q5VPvcfSSImGP94q6+wgamDdvhNLp2h404gtFaNWDM86uEkwfTVQ==",
+          SigningCertURL: "https://sns.ap-northeast-1.amazonaws.com/SimpleNotificationService-a86cb10b4e1f29c941702d737128f7b6.pem",
+          UnsubscribeURL: "https://sns.ap-northeast-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:ap-northeast-1:934352308465:topic:7b0449a3-5174-47d6-97b7-db51a2ffe51e"
         }
       end
 

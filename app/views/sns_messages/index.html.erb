@@ -14,6 +14,7 @@
   <% @sns_messages.each do |sns_message| %>
     <article class="sns_message">
       <p class="sns_message_body"><%= sns_message.body %></p>
+      <p class="sns_message_attributes"><%= JSON.parse(sns_message.message_attributes) %></p>
     </article>
   <% end %>
 </div>
