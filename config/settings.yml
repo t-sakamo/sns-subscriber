@@ -1,0 +1,5 @@
+sns_topic_arn: <%= ENV['SNS_TOPIC_ARN'] %>
+aws_sns_access_key_id: AKIA5TC54ZDYVGW557IZ
+aws_sns_secret_access_key: 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
+aws_sns_region: ap-northeast-1
+
