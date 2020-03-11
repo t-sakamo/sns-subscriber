@@ -1,7 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe 'SnsMessages', type: :request do
-  describe 'POST /sns_messages#create' do
+
+  describe 'GET /sns_messages' do
+    let(:sns_message) do
+      create(:sns_message,
+             body: "this is test message",
+             message_attributes: "{\"aaa\":{\"Type\":\"Binary\",\"Value\":\"AgME\"},\"ccc\":{\"Type\":\"String\",\"Value\":\"test\"},\"ary\":{\"Type\":\"String.Array\",\"Value\":\"[\\\"hoge\\\", \\\"moge\\\"]\"},\"zzz\":{\"Type\":\"Number\",\"Value\":\"0230.01\"}}"
+            )
+    end
+
+    before do
+      binding.pry
+      get '/sns_messages'
+    end
+
+    it do
+    end
+  end
+
+  describe 'POST /sns_messages' do
 
     before do
       post '/sns_messages', headers: request_header, params: request_body.to_json
