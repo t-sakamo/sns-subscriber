@@ -48,6 +48,9 @@ class SnsMessagesController < ApplicationController
   def recieve_message
     SnsMessage.create(
       body: body_params["Message"],
+      logger.debug("==== body_params[MessageAttributes] ===")
+      logger.debug(body_params["MessageAttributes"])
+#      message_attributes: body_params["MessageAttributes"].to_json
     )
   end
 end
