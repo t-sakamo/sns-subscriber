@@ -4,7 +4,7 @@ class SnsMessagesController < ApplicationController
     logger.info("=== entering ===")
     @sns_messages = SnsMessage.all
 
-    render status: 500
+    head 500
   end
 
   skip_before_action :verify_authenticity_token, only: :create
