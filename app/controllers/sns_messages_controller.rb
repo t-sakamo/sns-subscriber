@@ -3,8 +3,6 @@ class SnsMessagesController < ApplicationController
   def index
     logger.info("=== entering ===")
     @sns_messages = SnsMessage.all
-
-    head 500
   end
 
   skip_before_action :verify_authenticity_token, only: :create
@@ -48,6 +46,7 @@ class SnsMessagesController < ApplicationController
   end
 
   def recieve_message
+    raise
 #    logger.debug("==== body_params[MessageAttributes] ===")
 #    logger.debug(body_params["MessageAttributes"])
     SnsMessage.create(
