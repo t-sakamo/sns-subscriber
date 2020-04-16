@@ -33,6 +33,10 @@ class SnsMessagesController < ApplicationController
     @body_params ||= JSON.parse(request_body)
   end
 
+  def sns_message
+    @sns_message ||= JSON.parse(body_params["Message"])
+  end
+
   def authentic?
     # TopicArnと突合
     # 省略
@@ -46,6 +50,7 @@ class SnsMessagesController < ApplicationController
   end
 
   def recieve_message
+    sns_message['close']
     raise
 #    logger.debug("==== body_params[MessageAttributes] ===")
 #    logger.debug(body_params["MessageAttributes"])
