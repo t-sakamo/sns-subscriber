@@ -11,7 +11,6 @@ RSpec.describe 'SnsMessages', type: :request do
     end
 
     before do
-      binding.pry
       get '/sns_messages'
     end
 

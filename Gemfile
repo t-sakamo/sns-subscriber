@@ -10,6 +10,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'aws-sdk', '~> 2'
 gem 'faraday', '0.9.2'
 gem 'config'
+gem 'http_accept_language'
 
 group :test do
   gem 'rspec-rails'
