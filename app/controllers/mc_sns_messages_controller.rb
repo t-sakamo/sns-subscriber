@@ -3,6 +3,11 @@ class McSnsMessagesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
 
   def create
+    logger.info("### params ###")
+    params..each {|k, v| logger.debug("#{k} : #{v}")}
+    logger.info("##############")
+    return head 204
+
     logger.info("request_body: #{request_body}")
 #    logger.info("body_params: #{body_params}")
     logger.info("body_params[Type]: #{body_params["Type"]}")
