@@ -61,7 +61,7 @@ class McSnsMessagesController < ApplicationController
     sns_message['key']
     sns_message['message_send_at']
 
-    ActiveRecord::Base.transaction do
+    ##ActiveRecord::Base.transaction do
       restaurant = update_restaurant_contract(sns_message)
       # logを生成する
       body_params['TopicArn']
@@ -69,8 +69,8 @@ class McSnsMessagesController < ApplicationController
       sns_message['message_send_at']
 
       # 先行にlogが存在する場合は含めて実行する(順序性)
-      sns_message['message_send_at'].to_i)
-    end
+      sns_message['message_send_at'].to_i
+    ##end
   end
 
   # restaurantとcontractingを作成(更新)する
