@@ -58,22 +58,18 @@ class McSnsMessagesController < ApplicationController
     return if sns_message['close']=='true' || sns_message['training']=='true'
 
     # すでに処理済みのメッセージは処理しない(冪等性)
-    restaurant = Restaurant.find_by(toreta_key: sns_message['key'])
-    return if restaurant&.sns_messages&.find_by(message_send_at: sns_message['message_send_at']).present?
+    sns_message['key']
+    sns_message['message_send_at']
 
     ActiveRecord::Base.transaction do
       restaurant = update_restaurant_contract(sns_message)
       # logを生成する
-      restaurant.sns_messages.create!(topic_arn: body_params['TopicArn'],
-                                          message: sns_message.to_json,
-                                          message_send_at: sns_message['message_send_at'])
+      body_params['TopicArn']
+      sns_message.to_json,
+      message_send_at: sns_message['message_send_at']
 
       # 先行にlogが存在する場合は含めて実行する(順序性)
-      restaurant.sns_messages
-        .where("message_send_at > ?", sns_message['message_send_at'].to_i)
-        .order('message_send_at').each do |message|
-        update_restaurant_contract(JSON.parse(message.message))
-      end
+      sns_message['message_send_at'].to_i)
     end
   end
 

@@ -22,7 +22,7 @@ class SnsMessagesController < ApplicationController
       recieve_message
     end
   rescue JSON::ParserError => e
-    logger.error("ERROR: #{e}")
+    logger.error("JSON parse error: #{e}")
     head 204
   end
 
