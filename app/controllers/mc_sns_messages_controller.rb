@@ -53,6 +53,8 @@ class McSnsMessagesController < ApplicationController
   # メッセージを処理する
   def process_sns_message
     logger.info("body_params[Message]: #{body_params["Message"]}")
+    logger.info("sns_message[close] = #{sns_message['close']}")
+    logger.info("sns_message[training] = #{sns_message['training']}")
 
     # close or training がtrueの場合は現行仕様に則り、何もしない
     return if sns_message['close']=='true' || sns_message['training']=='true'
