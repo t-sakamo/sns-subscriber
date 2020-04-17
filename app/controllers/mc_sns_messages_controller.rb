@@ -4,8 +4,8 @@ class McSnsMessagesController < ApplicationController
 
   def create
     logger.info("request_body: #{request_body}")
-    logger.info("request_body: #{request_body}")
     logger.info("body_params: #{body_params}")
+    logger.info("body_params[Type]: #{body_params["Type"]}")
     case body_params["Type"].to_sym
     when :SubscriptionConfirmation
       confirm_subscription
