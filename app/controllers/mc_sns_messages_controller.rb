@@ -4,7 +4,7 @@ class McSnsMessagesController < ApplicationController
 
   def create
     logger.info("### params ###")
-    params..each {|k, v| logger.debug("#{k} : #{v}")}
+    params.each {|k, v| logger.debug("#{k} : #{v}")}
     logger.info("##############")
     return head 204
 
