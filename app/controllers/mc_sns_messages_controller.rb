@@ -3,15 +3,17 @@ class McSnsMessagesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
 
   def create
-    logger.debug("Type = #{body_params['Type']}")
-    logger.debug("MessageId = #{body_params['MessageId']}")
-    logger.debug("TopicArn = #{body_params['TopicArn']}")
-    logger.debug("Message = #{body_params['Message']}")
-    logger.debug("Timestamp = #{body_params['Timestamp']}")
-    logger.debug("SignatureVersion = #{body_params['SignatureVersion']}")
-    logger.debug("Signature = #{body_params['Signature']}")
-    logger.debug("SigningCertURL = #{body_params['SigningCertURL']}")
-    logger.debug("UnsubscribeURL = #{body_params['UnsubscribeURL']}")
+      message = JSON.parse(body_params['Message'])
+
+      logger.debug("key: #{message[:key]}")
+      logger.debug("close: #{message[:close]}")
+      logger.debug("training: #{message[:training]}")
+      logger.debug("name: #{message[:name]}")
+      logger.debug("timezone: #{message[:timezone]}")
+      logger.debug("order_index: #{message[:order_index]}")
+
+#\"restaurant_optional_contracts\":{\"medium_controller\":{\"start_at\":\"2019-05-21 15:00:00 UTC\",\"end_at\":\"nil\"},\"mail_importer\":{\"start_at\":\"2019-05-21 15:00:00 UTC\",\"end_at\":\"nil\"}},\"message_send_at\":\"15851018410503655\"}"
+
     return head 204
 
     case body_params["Type"].to_sym
