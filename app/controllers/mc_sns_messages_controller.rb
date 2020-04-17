@@ -3,8 +3,8 @@ class McSnsMessagesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
 
   def create
-    logger.info("request_body: #{request_body}")
-    logger.info("body_params: #{body_params}")
+#    logger.info("request_body: #{request_body}")
+#    logger.info("body_params: #{body_params}")
     logger.info("body_params[Type]: #{body_params["Type"]}")
     case body_params["Type"].to_sym
     when :SubscriptionConfirmation
@@ -55,6 +55,11 @@ class McSnsMessagesController < ApplicationController
   # メッセージを処理する
   def process_sns_message
     logger.info("body_params[Message]: #{body_params["Message"]}")
+    JSON.parse(body_params["Message"]).tap do |msg|
+      logger.info("msg: #{msg}")
+      logger.info("msg class name: #{msg.class.name}")
+    end
+
     logger.info("sns_message[close] = #{sns_message['close']}")
     logger.info("sns_message[training] = #{sns_message['training']}")
 
