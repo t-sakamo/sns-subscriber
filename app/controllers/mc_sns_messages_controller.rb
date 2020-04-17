@@ -5,17 +5,25 @@ class McSnsMessagesController < ApplicationController
   def create
     str = "{\"key\":\"0123456789ABCDEF0123456789ABCDEF0\",\"close\":\"false\",\"training\":\"false\",\"name\":\"1\",\"timezone\":\"Asia/Tokyo\",\"order_index\":\"0\",\"restaurant_optional_contracts\":{\"medium_controller\":{\"start_at\":\"2019-05-21 15:00:00 UTC\",\"end_at\":\"nil\"},\"mail_importer\":{\"start_at\":\"2019-05-21 15:00:00 UTC\",\"end_at\":\"nil\"}},\"message_send_at\":\"15851018410503655\"}"
 
-#    message = JSON.parse(body_params['Message'])
-    message = JSON.parse(str)
+    logger.debug("? = #{body_params['Message'] == str}")
 
+    message = JSON.parse(str, symbolize_names: true)
     logger.debug("message.class = #{message.class}")
+    logger.debug("key: #{message[:key]}")
+    logger.debug("close: #{message[:close]}")
+    logger.debug("training: #{message[:training]}")
+    logger.debug("name: #{message[:name]}")
+    logger.debug("timezone: #{message[:timezone]}")
+    logger.debug("order_index: #{message[:order_index]}")
 
-    logger.debug("key: #{message["key"]}")
-    logger.debug("close: #{message["close"]}")
-    logger.debug("training: #{message["training"]}")
-    logger.debug("name: #{message["name"]}")
-    logger.debug("timezone: #{message["timezone"]}")
-    logger.debug("order_index: #{message["order_index"]}")
+    message = JSON.parse(body_params['Message'], symbolize_names: true)
+    logger.debug("message.class = #{message.class}")
+    logger.debug("key: #{message[:key]}")
+    logger.debug("close: #{message[:close]}")
+    logger.debug("training: #{message[:training]}")
+    logger.debug("name: #{message[:name]}")
+    logger.debug("timezone: #{message[:timezone]}")
+    logger.debug("order_index: #{message[:order_index]}")
 
 #\"restaurant_optional_contracts\":{\"medium_controller\":{\"start_at\":\"2019-05-21 15:00:00 UTC\",\"end_at\":\"nil\"},\"mail_importer\":{\"start_at\":\"2019-05-21 15:00:00 UTC\",\"end_at\":\"nil\"}},\"message_send_at\":\"15851018410503655\"}"
 
