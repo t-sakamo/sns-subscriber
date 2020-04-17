@@ -21,6 +21,9 @@ class SnsMessagesController < ApplicationController
     when "Notification"
       recieve_message
     end
+  rescue JSON::ParserError => e
+    logger.error("ERROR: #{e}")
+    head 204
   end
 
   private
