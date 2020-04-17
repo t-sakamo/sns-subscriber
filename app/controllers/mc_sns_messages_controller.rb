@@ -75,6 +75,7 @@ class McSnsMessagesController < ApplicationController
 
   # restaurantとcontractingを作成(更新)する
   def update_restaurant_contract(message)
+    logger.info("message: #{message}")
     update_restaurant(message)
     message['restaurant_optional_contracts']&.each do |key, val|
       if val == 'nil'
