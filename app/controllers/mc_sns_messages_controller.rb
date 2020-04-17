@@ -3,7 +3,10 @@ class McSnsMessagesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
 
   def create
-    message = JSON.parse(body_params['Message'])
+    str = "{\"key\":\"0123456789ABCDEF0123456789ABCDEF0\",\"close\":\"false\",\"training\":\"false\",\"name\":\"1\",\"timezone\":\"Asia/Tokyo\",\"order_index\":\"0\",\"restaurant_optional_contracts\":{\"medium_controller\":{\"start_at\":\"2019-05-21 15:00:00 UTC\",\"end_at\":\"nil\"},\"mail_importer\":{\"start_at\":\"2019-05-21 15:00:00 UTC\",\"end_at\":\"nil\"}},\"message_send_at\":\"15851018410503655\"}"
+
+#    message = JSON.parse(body_params['Message'])
+    message = JSON.parse(str)
 
     logger.debug("message.class = #{message.class}")
 
@@ -62,70 +65,5 @@ class McSnsMessagesController < ApplicationController
 
   def http_get(url)
     Faraday.get(url)
-  end
-
-  # メッセージを処理する
-  def process_sns_message
-    logger.info("body_params[Message]: #{body_params["Message"]}")
-    JSON.parse(body_params["Message"]).tap do |msg|
-      logger.info("msg: #{msg}")
-      logger.info("msg class name: #{msg.class.name}")
-    end
-
-    logger.info("sns_message[close] = #{sns_message['close']}")
-    logger.info("sns_message[training] = #{sns_message['training']}")
-
-    # close or training がtrueの場合は現行仕様に則り、何もしない
-    return if sns_message['close']=='true' || sns_message['training']=='true'
-
-    # すでに処理済みのメッセージは処理しない(冪等性)
-    sns_message['key']
-    sns_message['message_send_at']
-
-    ##ActiveRecord::Base.transaction do
-      restaurant = update_restaurant_contract(sns_message)
-      # logを生成する
-      body_params['TopicArn']
-      sns_message.to_json
-      sns_message['message_send_at']
-
-      # 先行にlogが存在する場合は含めて実行する(順序性)
-      sns_message['message_send_at'].to_i
-    ##end
-  end
-
-  # restaurantとcontractingを作成(更新)する
-  def update_restaurant_contract(message)
-    logger.info("message class: #{message.class}")
-    logger.info("message: #{message}")
-    update_restaurant(message)
-    message[:restaurant_optional_contracts]&.each do |key, val|
-      if val == 'nil'
-        nil
-      else
-        {
-          start_at: str_to_datetime(val["start_at"]),
-          end_at:  str_to_datetime(val["end_at"])
-        }
-      end
-    end
-  end
-
-  # restaurantを作成(更新)する
-  def update_restaurant(params)
-    {
-      name: params['name'],
-      timezone: params['timezone'],
-      order_index: params['order_index']
-    }
-  end
-
-  def str_to_datetime(str)
-    str = (str == 'nil') ? nil : str
-    str.blank? ? nil : str.to_datetime
-  end
-
-  def sns_message
-    @sns_message ||= JSON.parse(body_params["Message"])
   end
 end
