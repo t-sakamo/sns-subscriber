@@ -3,14 +3,14 @@ class McSnsMessagesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
 
   def create
-      message = JSON.parse(body_params['Message'])
+    message = JSON.parse(body_params['Message'])
 
-      logger.debug("key: #{message[:key]}")
-      logger.debug("close: #{message[:close]}")
-      logger.debug("training: #{message[:training]}")
-      logger.debug("name: #{message[:name]}")
-      logger.debug("timezone: #{message[:timezone]}")
-      logger.debug("order_index: #{message[:order_index]}")
+    logger.debug("key: #{message[:key]}")
+    logger.debug("close: #{message[:close]}")
+    logger.debug("training: #{message[:training]}")
+    logger.debug("name: #{message[:name]}")
+    logger.debug("timezone: #{message[:timezone]}")
+    logger.debug("order_index: #{message[:order_index]}")
 
 #\"restaurant_optional_contracts\":{\"medium_controller\":{\"start_at\":\"2019-05-21 15:00:00 UTC\",\"end_at\":\"nil\"},\"mail_importer\":{\"start_at\":\"2019-05-21 15:00:00 UTC\",\"end_at\":\"nil\"}},\"message_send_at\":\"15851018410503655\"}"
 
