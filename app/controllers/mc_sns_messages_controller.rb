@@ -4,7 +4,7 @@ class McSnsMessagesController < ApplicationController
 
   def create
     logger.debug("body_params['Message'] = #{body_params['Message']}")
-    message = JSON.parse(body_params['Message'], symbolize_names: true)
+    message = JSON.parse(body_params['Message'])
     logger.debug("message.class = #{message.class}")
     logger.debug("key: #{message['key']}")
     logger.debug("close: #{message['close']}")
