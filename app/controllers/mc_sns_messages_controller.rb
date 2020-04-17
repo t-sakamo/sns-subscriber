@@ -86,7 +86,7 @@ class McSnsMessagesController < ApplicationController
       else
         {
           start_at: str_to_datetime(val["start_at"]),
-          end_at:  str_to_datetime(val["end_at"]))
+          end_at:  str_to_datetime(val["end_at"])
         }
       end
     end
