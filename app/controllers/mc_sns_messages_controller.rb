@@ -65,8 +65,8 @@ class McSnsMessagesController < ApplicationController
       restaurant = update_restaurant_contract(sns_message)
       # logを生成する
       body_params['TopicArn']
-      sns_message.to_json,
-      message_send_at: sns_message['message_send_at']
+      sns_message.to_json
+      sns_message['message_send_at']
 
       # 先行にlogが存在する場合は含めて実行する(順序性)
       sns_message['message_send_at'].to_i)
