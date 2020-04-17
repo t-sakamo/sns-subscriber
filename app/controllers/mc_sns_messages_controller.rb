@@ -7,7 +7,7 @@ class McSnsMessagesController < ApplicationController
 
     logger.debug("? = #{body_params['Message'] == str}")
 
-    logger.debug("str = #{str}")
+    logger.debug("body_params['Message'] = #{str}")
     message = JSON.parse(str)
     logger.debug("message.class = #{message.class}")
     logger.debug("key: #{message["key"]}")
