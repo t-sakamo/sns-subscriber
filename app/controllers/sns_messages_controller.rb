@@ -40,6 +40,10 @@ class SnsMessagesController < ApplicationController
     @sns_message ||= JSON.parse(body_params["Message"])
   end
 
+  def message_attributes
+    @message_attributes ||= body_params["MessageAttributes"]
+  end
+
   def authentic?
     # TopicArnと突合
     # 省略
@@ -53,5 +57,6 @@ class SnsMessagesController < ApplicationController
   end
 
   def recieve_message
+    logger.info("message_attributes: #{message_attributes}")
   end
 end
