@@ -60,6 +60,8 @@ class SnsMessagesController < ApplicationController
     logger.info("message_attributes: #{message_attributes}")
 
     ## "string_array"=>{"Type"=>"String.Array", "Value"=>"[\"hoge\",\"moge\",\"poge\"]"}}
-    logger.info("string_array: #{JSON.parse(message_attributes["string_array"]["Value"])}")
+    msg_attr = JSON.parse(message_attributes["string_array"]["Value"])
+    logger.info("string_array: #{msg_attr}")
+    logger.info("class: #{msg_attr.class.name}")
   end
 end
