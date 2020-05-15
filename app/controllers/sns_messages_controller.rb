@@ -63,5 +63,7 @@ class SnsMessagesController < ApplicationController
     msg_attr = JSON.parse(message_attributes["string_array"]["Value"])
     logger.info("string_array: #{msg_attr}")
     logger.info("class: #{msg_attr.class.name}")
+
+    logger.info("account_ids: #{sns_message['account_ids']}")
   end
 end
