@@ -58,6 +58,7 @@ class SnsMessagesController < ApplicationController
 
   def recieve_message
     logger.info("entering!")
+    logger.info("sns_message: #{sns_message}")
 =begin
     logger.info("message_attributes: #{message_attributes}")
 
@@ -67,6 +68,6 @@ class SnsMessagesController < ApplicationController
     logger.info("string_array: #{msg_attr}")
     logger.info("class: #{msg_attr.class.name}")
 =end
-    logger.info("!!! account_ids: #{sns_message['account_ids']}")
+#    logger.info("!!! account_ids: #{sns_message['account_ids']}")
   end
 end
