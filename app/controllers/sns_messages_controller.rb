@@ -57,6 +57,7 @@ class SnsMessagesController < ApplicationController
   end
 
   def recieve_message
+    logger.info("entering!")
 =begin
     logger.info("message_attributes: #{message_attributes}")
 
