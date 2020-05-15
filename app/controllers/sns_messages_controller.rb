@@ -57,6 +57,7 @@ class SnsMessagesController < ApplicationController
   end
 
   def recieve_message
+=begin
     logger.info("message_attributes: #{message_attributes}")
 
     ## MessageAttributes : {"string_value"=>{"Type"=>"String.Array", "Value"=>"[\"hogeeeeee\", \"moge\",  \"poge\"]"}}
@@ -64,7 +65,7 @@ class SnsMessagesController < ApplicationController
     msg_attr = JSON.parse(message_attributes["string_value"]["Value"])
     logger.info("string_array: #{msg_attr}")
     logger.info("class: #{msg_attr.class.name}")
-
-    logger.info("account_ids: #{sns_message['account_ids']}")
+=end
+    logger.info("!!! account_ids: #{sns_message['account_ids']}")
   end
 end
